@@ -20,5 +20,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/threads' , 'ThreadsController@index');
-Route::get('/threads/{thread}/' , 'ThreadsController@show');
+Route::get('threads' , 'ThreadsController@index')->name('threads.index');
+Route::get('/threads/create' , 'ThreadsController@create')->name('threads.create');
+Route::get('threads/{thread}/' , 'ThreadsController@show');
+//Route::get('threads/{channel}/{thread}/' , 'ThreadsController@show');
+//
+Route::post('threads/create/success' , 'ThreadsController@store')->name('threads.store');
+//instead of all route of /threads applies resource
+
+//Route::resource('/threads', 'ThreadsController');
+Route::post('/threads/{thread}/replies' , 'RepliesController@store');
+
+Route::get('/threads/{channel}/{thread}/replies', 'RepliesController@index');
+Route::post('/threads/{channel}/{thread}/replies', 'RepliesController@store');
