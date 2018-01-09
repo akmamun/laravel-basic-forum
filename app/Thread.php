@@ -11,9 +11,14 @@ class Thread extends Model
 
     public function path()
     {
-        return '/threads/' . $this->id;
+//        return '/threads/' . $this->id;
 
-//        return "/threads/{$this->channel->slug}/{$this->id}";
+        return "/threads/{$this->channel->slug}/{$this->id}";
+    }
+
+    public function channel()
+    {
+       return  $this->belongsTo(Channel::class);
     }
 //
 
@@ -35,9 +40,6 @@ class Thread extends Model
         $this->replies()->create($reply);
     }
 
-    public function channel ()
-    {
-        $this->belongsTo(Channel::class);
-    }
+
 
 }

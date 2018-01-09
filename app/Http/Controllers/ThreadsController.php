@@ -47,14 +47,14 @@ class ThreadsController extends Controller
 
             'title' => 'required',
             'body' => 'required',
-//            'channel_id' => 'required|unique:threads'  //channel id goes to channel table
+            'channel_id' => 'required|exists:channels,id'  //channel id goes to channel table
 
         ]);
 
         $thread = Thread::create([
 
             'user_id' => auth()->id(),
-//            'channel_id' => request('channel_id'),
+            'channel_id' => request('channel_id'),
             'title' => request('title'),
             'body' => request('body'),
 
@@ -66,15 +66,15 @@ class ThreadsController extends Controller
     }
 
 
-//    public function show($channelId, Thread $thread)
-//    {
-//        return view('threads.show', compact('thread'));
-//    }
-
-    public function show(Thread $thread)
+    public function show($channelId, Thread $thread)
     {
         return view('threads.show', compact('thread'));
     }
+
+//    public function show(Thread $thread)
+//    {
+//        return view('threads.show', compact('thread'));
+//    }
 
     public function edit(Thread $thread)
     {
