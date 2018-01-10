@@ -7,4 +7,3 @@
 * User Registration/Login  
 * User Forum Post
 * User Forum Comment
-* Adding Channel Slug
