@@ -9,8 +9,27 @@
                         <a href="#">{{$thread->creator->name}}</a> posted:
                         {{$thread->title}}</div>
                     <div class="panel-body">
-                     {{$thread->body}}
+                       <div>
+                           <img src="{{asset('storage/images/' . $thread->image  )}}" alt="" width="70%">
+                       </div>
+                     <article>
+                         {{$thread->body}}
+                     </article>
                     </div>
+                    @if(auth()->check())
+                        @if($thread->user_id == Auth::user()->id)
+                        <div class="form-group">
+                            <a href="{{ route('threads.edit', $thread->id) }}"> <button type="submit" class="btn btn-primary">Edit</button></a>
+                            <form method="POST" action="{{route('threads.destroy', $thread->id )}}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-danger" value="Delete">
+                                </div>
+                            </form>
+                        </div>
+                         @endif
+                     @endif
                 </div>
             </div>
         </div>
@@ -27,10 +46,10 @@
                     <form  method="post" action="{{$thread->path() . '/replies'}}">
                         {{csrf_field()}}
                         <div class="form-group">
-                            <textarea name="body" id="body" class="form-control" rows="5" placeholder="Write Yours Replies"></textarea>
+                            <textarea name="body" id="body" class="form-control" rows="5" placeholder="Write Something"></textarea>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary">Reply</button>
+                            <button class="btn btn-primary">Comment</button>
                         </div>
                     </form>
                 </div>

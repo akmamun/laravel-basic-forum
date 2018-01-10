@@ -42,15 +42,18 @@
                     {{--@foreach(App\Channel::all() as $channel)--}}
                     {{--<option value="{{$channel->id}}">{{$channel->name}}</option>--}}
                     {{--@endforeach--}}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Channels <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            @foreach($channels as $channel)
-                            <li><a href="/threads/{{$channel->slug}}">{{$channel->name}}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    {{--<li class="dropdown">--}}
+                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"--}}
+                    {{--aria-expanded="false">Channels <span class="caret"></span></a>--}}
+                    {{--<ul class="dropdown-menu">--}}
+                    {{--@foreach($channels as $channel)--}}
+                    {{--<li><a href="/threads/{{$channel->slug}}">{{$channel->name}}</a></li>--}}
+                    {{--@endforeach--}}
+                    {{--</ul>--}}
+                    {{--</li>--}}
+                    @if (auth()->check())
+                        <li><a href="/threads?by={{ auth()->user()->name }}">My Threads</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->

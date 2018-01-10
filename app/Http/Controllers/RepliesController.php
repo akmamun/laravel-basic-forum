@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Reply;
 use App\Thread;
 use Illuminate\Http\Request;
@@ -25,10 +26,9 @@ class RepliesController extends Controller
         //
     }
 
-//
 
-//    public function store( Thread $thread)
-    public function store($channelId, Thread $thread)
+    public function store( Thread $thread)
+
     {
 
         $this->validate(request(), ['body'=>'required']);
@@ -50,19 +50,29 @@ class RepliesController extends Controller
     }
 
 
-    public function edit(Reply $reply)
+    public function edit($id)
     {
-        //
+
     }
 
 
-    public function update(Request $request, Reply $reply)
+    public function update($id)
     {
-        //
+
+
+
     }
 
-    public function destroy(Reply $reply)
+    public function destroy($id)
     {
-        //
+
+        $reply= Reply::findOrFail($id);
+
+        $reply->delete();
+        dd($reply);
+
+        return redirect()->route('threads.index')
+            ->with('flash_message',
+                'Thread successfully deleted');
     }
 }

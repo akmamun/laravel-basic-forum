@@ -13,4 +13,15 @@ class Reply extends Model
   {
       return $this->belongsTo(User::class, 'user_id');
   }
+
+    public function isTheOwner($user)
+    {
+        return $this->user_id == $user->id;
+    }
+    public function creator()//users
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+
 }

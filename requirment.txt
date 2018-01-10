@@ -1,0 +1,7 @@
+Ei feature gulo korbi
+- My threads ( I can see my threads, edit / delete capability shoho)
+- Threads featured image (Will be shown left side of each thread as thumbnail)
+- Comments
+   - All users can comment
+   - I can delete my comment, if I am the commentator (From any post)
+   - If I am the thread is posted by me, then I can delete anyone's comment.

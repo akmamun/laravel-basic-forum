@@ -14,11 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        \View::share('channels',\App\Channel::all()); its a problem when db migrate
-        \View::composer('*', function($view)
-        {
-            $view->with('channels', Channel::all());
-        });
+
     }
 
     /**
